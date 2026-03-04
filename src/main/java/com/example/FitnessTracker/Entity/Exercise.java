@@ -3,24 +3,19 @@ package com.example.FitnessTracker.Entity;
 import com.example.FitnessTracker.Enums.Difficulty;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Id;
+import java.util.List;
 
 public class Exercise {
 
-    @Id
-    @Nonnull
+    private int exId;
+
     private String name;
 
     Difficulty difficulty = Difficulty.WORKING;
 
     private int setCount;
-
-    private int repCount;
-
     private int previousRepCount;
-
-    private int restTimer;
-
-    private String note;
+    List<Set> sets;
 
     public Exercise(String name) {
         this(name, 3, 8, 120);
@@ -37,8 +32,6 @@ public class Exercise {
     public Exercise(String name, int setCount, int repCount, int restTimer) {
         this.name = name;
         this.setCount = setCount;
-        this.repCount = repCount;
-        this.restTimer = restTimer;
     }
 
     public String getName() {
@@ -65,13 +58,6 @@ public class Exercise {
         this.setCount = setCount;
     }
 
-    public int getRepCount() {
-        return repCount;
-    }
-
-    public void setRepCount(int repCount) {
-        this.repCount = repCount;
-    }
 
     public int getPreviousRepCount() {
         return previousRepCount;
@@ -81,32 +67,13 @@ public class Exercise {
         this.previousRepCount = previousRepCount;
     }
 
-    public int getRestTimer() {
-        return restTimer;
-    }
-
-    public void setRestTimer(int restTimer) {
-        this.restTimer = restTimer;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
     @Override
     public String toString() {
         return "Exercise{" +
                 "name='" + name + '\'' +
                 ", difficulty=" + difficulty +
                 ", setCount=" + setCount +
-                ", repCount=" + repCount +
                 ", previousRepCount=" + previousRepCount +
-                ", restTimer=" + restTimer +
-                ", note='" + note + '\'' +
                 '}';
     }
 }
