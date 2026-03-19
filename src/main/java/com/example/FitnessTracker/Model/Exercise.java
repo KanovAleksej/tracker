@@ -1,21 +1,17 @@
-package com.example.FitnessTracker.Entity;
+package com.example.FitnessTracker.Model;
 
 import com.example.FitnessTracker.Enums.Difficulty;
-import jakarta.annotation.Nonnull;
-import jakarta.persistence.Id;
+
 import java.util.List;
 
 public class Exercise {
 
-    private int exId;
-
+    private int exerciseId;
     private String name;
-
     Difficulty difficulty = Difficulty.WORKING;
-
-    private int setCount;
-    private int previousRepCount;
-    List<Set> sets;
+    private int repCount;
+    private int previousWorkoutRepCount;
+    private List<Set> sets;
 
     public Exercise(String name) {
         this(name, 3, 8, 120);
@@ -31,7 +27,7 @@ public class Exercise {
 
     public Exercise(String name, int setCount, int repCount, int restTimer) {
         this.name = name;
-        this.setCount = setCount;
+        this.repCount = setCount;
     }
 
     public String getName() {
@@ -50,21 +46,21 @@ public class Exercise {
         this.difficulty = difficulty;
     }
 
-    public int getSetCount() {
-        return setCount;
+    public int getRepCount() {
+        return repCount;
     }
 
-    public void setSetCount(int setCount) {
-        this.setCount = setCount;
+    public void setRepCount(int repCount) {
+        this.repCount = repCount;
     }
 
 
-    public int getPreviousRepCount() {
-        return previousRepCount;
+    public int getPreviousWorkoutRepCount() {
+        return previousWorkoutRepCount;
     }
 
-    public void setPreviousRepCount(int previousRepCount) {
-        this.previousRepCount = previousRepCount;
+    public void setPreviousWorkoutRepCount(int previousWorkoutRepCount) {
+        this.previousWorkoutRepCount = previousWorkoutRepCount;
     }
 
     @Override
@@ -72,8 +68,8 @@ public class Exercise {
         return "Exercise{" +
                 "name='" + name + '\'' +
                 ", difficulty=" + difficulty +
-                ", setCount=" + setCount +
-                ", previousRepCount=" + previousRepCount +
+                ", setCount=" + repCount +
+                ", previousRepCount=" + previousWorkoutRepCount +
                 '}';
     }
 }
