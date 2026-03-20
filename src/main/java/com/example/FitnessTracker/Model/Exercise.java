@@ -1,17 +1,24 @@
 package com.example.FitnessTracker.Model;
 
-import com.example.FitnessTracker.Enums.Difficulty;
+import jakarta.persistence.*;
 
-import java.util.List;
-
+@Entity
+@Table(name = "exercise")
 public class Exercise {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "exerciseId")
     private int exerciseId;
+
+    @Column(name = "exercise_name", nullable = false)
     private String name;
-    Difficulty difficulty = Difficulty.WORKING;
+
+    @Column(name = "rep_count", nullable = false)
     private int repCount;
+
+    @Column(name = "previous_rep_count")
     private int previousWorkoutRepCount;
-    private List<Set> sets;
 
     public Exercise(String name) {
         this(name, 3, 8, 120);
@@ -30,20 +37,20 @@ public class Exercise {
         this.repCount = setCount;
     }
 
+    public int getExerciseId() {
+        return exerciseId;
+    }
+
+    public void setExerciseId(int exerciseId) {
+        this.exerciseId = exerciseId;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Difficulty getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
     }
 
     public int getRepCount() {
@@ -67,7 +74,6 @@ public class Exercise {
     public String toString() {
         return "Exercise{" +
                 "name='" + name + '\'' +
-                ", difficulty=" + difficulty +
                 ", setCount=" + repCount +
                 ", previousRepCount=" + previousWorkoutRepCount +
                 '}';
