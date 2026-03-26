@@ -8,7 +8,7 @@ public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "exerciseId")
+    @Column(name = "exercise_id")
     private int exerciseId;
 
     @Column(name = "exercise_name", nullable = false)
@@ -19,6 +19,8 @@ public class Exercise {
 
     @Column(name = "previous_rep_count")
     private int previousWorkoutRepCount;
+
+    public Exercise(){};
 
     public Exercise(String name, int repCount, int previousWorkoutRepCount) {
         this.name = name;
