@@ -1,20 +1,26 @@
 package com.example.FitnessTracker.Controller;
 
 import com.example.FitnessTracker.DAO.ExerciseDAOImpl;
-import com.example.FitnessTracker.Model.Exercise;
 import com.example.FitnessTracker.Exception.ExerciseNotFoundException;
+import com.example.FitnessTracker.Model.Exercise;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import tools.jackson.databind.json.JsonMapper;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping()
 public class ExerciseController {
 
     private ExerciseDAOImpl exerciseDaoImpl;
+    private JsonMapper jsonMapper;
 
-    public ExerciseController(ExerciseDAOImpl exerciseDaoImpl) {
+    public ExerciseController(ExerciseDAOImpl exerciseDaoImpl, JsonMapper jsonMapper) {
+        this.jsonMapper = jsonMapper;
         this.exerciseDaoImpl = exerciseDaoImpl;
     }
 
@@ -58,5 +64,23 @@ public class ExerciseController {
                                @RequestBody Exercise theExercise) {
 
         exerciseDaoImpl.update(exerciseId, theExercise);
+    }
+
+    @PatchMapping("/exercises/{exerciseId}")
+    public void patchExercise(@PathVariable ("exerciseId") int exerciseId,
+                              @RequestBody Map<String, Object> patchPayload) {
+
+        Exercise tempExercise = exerciseDaoImpl.findById(exerciseId);
+
+        if (tempExercise == null){
+            throw new ExerciseNotFoundException("Exercise id not found " +  exerciseId);
+        }
+        if (patchPayload.containsKey("exerciseId")) {
+            throw new RuntimeException("Exercise Id not allowed in request body " + exerciseId);
+        }
+        Exercise patchedExercise = jsonMapper.updateValue(tempExercise, patchPayload);
+        exerciseDaoImpl.save(patchedExercise);
+
+        System.out.println(patchedExercise);
     }
 }
