@@ -1,4 +1,3 @@
-DROP SCHEMA IF EXISTS `workout_planner`;
 CREATE SCHEMA `workout_planner`;
 USE `workout_planner`;
 SET FOREIGN_KEY_CHECKS = 0;
