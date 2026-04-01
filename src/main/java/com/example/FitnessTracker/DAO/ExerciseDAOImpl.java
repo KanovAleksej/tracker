@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class ExerciseDAOImpl implements ExerciseDAO {
+
     private EntityManager entityManager;
 
     @Autowired
@@ -20,7 +20,6 @@ public class ExerciseDAOImpl implements ExerciseDAO {
     }
 
     @Override
-    @Transactional
     public void save(Exercise theExercise) {
         entityManager.persist(theExercise);
     }
@@ -38,7 +37,6 @@ public class ExerciseDAOImpl implements ExerciseDAO {
     }
 
     @Override
-    @Transactional
     public void update(Integer exerciseId, Exercise theExercise) {
         Exercise tempExercise = entityManager.find(Exercise.class, exerciseId);
         //temp name change for testing purpose
@@ -47,11 +45,8 @@ public class ExerciseDAOImpl implements ExerciseDAO {
     }
 
     @Override
-    @Transactional
-    public void delete(Integer exerciseId){
+    public void delete(Integer exerciseId) {
         Exercise tempExercise = entityManager.find(Exercise.class, exerciseId);
         entityManager.remove(tempExercise);
     }
-
-
 }
