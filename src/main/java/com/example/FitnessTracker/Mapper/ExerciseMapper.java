@@ -5,12 +5,13 @@ import com.example.FitnessTracker.Model.Exercise;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+import java.util.Optional;
+
+@Mapper(componentModel = "spring")
 public interface ExerciseMapper {
     ExerciseMapper INSTANCE = Mappers.getMapper(ExerciseMapper.class);
 
-
-    ExerciseDTO exerciseToExerciseDTO(Exercise theExercise);
+    ExerciseDTO exerciseToExerciseDTO(Optional<Exercise> theExercise);
 
     Exercise exerciseDTOToExercise(ExerciseDTO theExerciseDTO);
 }
