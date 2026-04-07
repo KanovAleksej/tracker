@@ -6,6 +6,7 @@ import com.example.FitnessTracker.Exception.ExerciseNotFoundException;
 import com.example.FitnessTracker.Mapper.ExerciseMapper;
 import com.example.FitnessTracker.Model.Exercise;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +33,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public ExerciseDTO exerciseToDTO(Exercise theExercise) {
-        return mapper.exerciseToExerciseDTO(Optional.ofNullable(theExercise));
+        return mapper.exerciseToExerciseDTO(theExercise);
     }
 
     @Override
@@ -50,11 +51,9 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public ExerciseDTO findById(int theId) {
 
-        Optional<Exercise> theExercise = theExerciseRepository.findById(theId);
+        Exercise theExercise = theExerciseRepository.findById(theId)
+                .orElseThrow(()->  new ExerciseNotFoundException("Exercise id not found " + theId));
 
-        if (!theExercise.isPresent()){
-            throw new ExerciseNotFoundException("Exercise id not found " + theId);
-        }
         if ((theId < 0) || (theId > 99)){
             throw new ExerciseNotFoundException("Exercise not found " + theId);
         }
