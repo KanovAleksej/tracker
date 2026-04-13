@@ -1,4 +1,4 @@
-package com.example.FitnessTracker.Enums;
+package com.example.FitnessTracker.Model.Enums;
 
 public enum Difficulty {
     LIGHT,

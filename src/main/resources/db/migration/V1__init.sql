@@ -2,7 +2,7 @@ CREATE SCHEMA `workout_planner`;
 USE `workout_planner`;
 SET FOREIGN_KEY_CHECKS = 0;
 
-CREATE TABLE `exercise`
+CREATE TABLE `exerciseEntity`
 (
     `exerciseId`         INT          NOT NULL AUTO_INCREMENT,
     `exercise_name`      VARCHAR(128) NOT NULL,

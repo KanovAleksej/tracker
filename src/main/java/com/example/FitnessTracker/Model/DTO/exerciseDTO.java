@@ -1,28 +1,16 @@
-package com.example.FitnessTracker.Model;
+package com.example.FitnessTracker.Model.DTO;
 
-import jakarta.persistence.*;
+public class exerciseDTO {
 
-@Entity
-@Table(name = "exercise")
-public class Exercise {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "exercise_id")
     private int exerciseId;
-
-    @Column(name = "exercise_name", nullable = false)
     private String name;
-
-    @Column(name = "rep_count")
     private int repCount;
-
-    @Column(name = "previous_rep_count")
     private int previousWorkoutRepCount;
 
-    public Exercise(){};
 
-    public Exercise(String name, int repCount, int previousWorkoutRepCount) {
+    public exerciseDTO(){};
+
+    public exerciseDTO(String name, int repCount, int previousWorkoutRepCount) {
         this.name = name;
         this.repCount = repCount;
         this.previousWorkoutRepCount = previousWorkoutRepCount;
@@ -58,15 +46,5 @@ public class Exercise {
 
     public void setPreviousWorkoutRepCount(int previousWorkoutRepCount) {
         this.previousWorkoutRepCount = previousWorkoutRepCount;
-    }
-
-    @Override
-    public String toString() {
-        return "Exercise{" +
-                "exerciseId=" + exerciseId +
-                ", name='" + name + '\'' +
-                ", repCount=" + repCount +
-                ", previousWorkoutRepCount=" + previousWorkoutRepCount +
-                '}';
     }
 }

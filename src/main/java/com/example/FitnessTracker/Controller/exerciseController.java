@@ -1,8 +1,8 @@
 package com.example.FitnessTracker.Controller;
 
-import com.example.FitnessTracker.DTO.ExerciseDTO;
-import com.example.FitnessTracker.Model.Exercise;
-import com.example.FitnessTracker.Service.ExerciseService;
+import com.example.FitnessTracker.Model.DTO.exerciseDTO;
+import com.example.FitnessTracker.Entities.exerciseEntity;
+import com.example.FitnessTracker.Service.exerciseService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,31 +18,26 @@ import java.util.Map;
 
 @RestController
 @RequestMapping()
-public class ExerciseController {
+public class exerciseController {
 
-    private ExerciseService exerciseService;
+    private exerciseService exerciseService;
 
-    public ExerciseController(ExerciseService theExerciseService) {
+    public exerciseController(exerciseService theExerciseService) {
         exerciseService = theExerciseService;
     }
 
-    @GetMapping("/hi")
-    public String hello() {
-        return "Hello cruel world";
-    }
-
     @GetMapping("/exercises/{exerciseId}")
-    public ExerciseDTO getExercise(@PathVariable("exerciseId") Integer exerciseId) {
+    public exerciseDTO getExercise(@PathVariable("exerciseId") Integer exerciseId) {
         return exerciseService.findById(exerciseId);
     }
 
     @PostMapping("/exercises")
-    public void addExercise(@RequestBody Exercise theExercise) {
-        exerciseService.save(theExercise);
+    public void addExercise(@RequestBody exerciseEntity theExerciseEntity) {
+        exerciseService.saveNewExercise(theExerciseEntity);
     }
 
     @GetMapping("/exercises")
-    public List<ExerciseDTO> findAll() {
+    public List<exerciseDTO> findAll() {
         return exerciseService.findAll();
     }
 
@@ -51,17 +46,18 @@ public class ExerciseController {
         exerciseService.delete(exerciseId);
     }
 
+    //Put endpoint not in use
     @PutMapping("/exercises/{exerciseId}")
     public void updateExercise(@PathVariable("exerciseId") Integer exerciseId,
-                               @RequestBody Exercise theExercise) {
+                               @RequestBody exerciseEntity theExerciseEntity) {
 
-        exerciseService.save(theExercise);
+        exerciseService.saveNewExercise(theExerciseEntity);
     }
 
     @PatchMapping("/exercises/{exerciseId}")
     public void patchExercise(@PathVariable("exerciseId") int exerciseId,
                               @RequestBody Map<String, Object> patchPayload) {
 
-        exerciseService.update(exerciseId, patchPayload);
+        exerciseService.updateExercise(exerciseId, patchPayload);
     }
 }
