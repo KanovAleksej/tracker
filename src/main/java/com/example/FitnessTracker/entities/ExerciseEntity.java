@@ -1,10 +1,10 @@
-package com.example.FitnessTracker.Entities;
+package com.example.FitnessTracker.entities;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "exercise")
-public class exerciseEntity {
+public class ExerciseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,9 @@ public class exerciseEntity {
     @Column(name = "previous_rep_count")
     private int previousWorkoutRepCount;
 
-    public exerciseEntity(){};
+    public ExerciseEntity(){};
 
-    public exerciseEntity(String name, int repCount, int previousWorkoutRepCount) {
+    public ExerciseEntity(String name, int repCount, int previousWorkoutRepCount) {
         this.name = name;
         this.repCount = repCount;
         this.previousWorkoutRepCount = previousWorkoutRepCount;

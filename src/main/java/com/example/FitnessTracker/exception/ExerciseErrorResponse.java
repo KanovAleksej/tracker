@@ -1,4 +1,4 @@
-package com.example.FitnessTracker.Exception;
+package com.example.FitnessTracker.exception;
 
 
 public class ExerciseErrorResponse {

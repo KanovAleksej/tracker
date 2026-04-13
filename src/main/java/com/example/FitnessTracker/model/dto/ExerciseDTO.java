@@ -1,6 +1,6 @@
-package com.example.FitnessTracker.Model.DTO;
+package com.example.FitnessTracker.model.dto;
 
-public class exerciseDTO {
+public class ExerciseDTO {
 
     private int exerciseId;
     private String name;
@@ -8,9 +8,9 @@ public class exerciseDTO {
     private int previousWorkoutRepCount;
 
 
-    public exerciseDTO(){};
+    public ExerciseDTO(){};
 
-    public exerciseDTO(String name, int repCount, int previousWorkoutRepCount) {
+    public ExerciseDTO(String name, int repCount, int previousWorkoutRepCount) {
         this.name = name;
         this.repCount = repCount;
         this.previousWorkoutRepCount = previousWorkoutRepCount;

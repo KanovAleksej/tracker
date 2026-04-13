@@ -1,6 +1,6 @@
-package com.example.FitnessTracker.Model.Enums;
+package com.example.FitnessTracker.model.enums;
 
-public enum Difficulty {
+public enum ExerciseDifficulty {
     LIGHT,
     WORKING,
     HEAVY;

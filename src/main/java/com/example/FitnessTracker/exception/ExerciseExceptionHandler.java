@@ -1,4 +1,4 @@
-package com.example.FitnessTracker.Exception;
+package com.example.FitnessTracker.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

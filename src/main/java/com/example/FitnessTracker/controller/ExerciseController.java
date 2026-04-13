@@ -1,8 +1,8 @@
-package com.example.FitnessTracker.Controller;
+package com.example.FitnessTracker.controller;
 
-import com.example.FitnessTracker.Model.DTO.exerciseDTO;
-import com.example.FitnessTracker.Entities.exerciseEntity;
-import com.example.FitnessTracker.Service.exerciseService;
+import com.example.FitnessTracker.model.dto.ExerciseDTO;
+import com.example.FitnessTracker.entities.ExerciseEntity;
+import com.example.FitnessTracker.service.ExerciseService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,26 +18,26 @@ import java.util.Map;
 
 @RestController
 @RequestMapping()
-public class exerciseController {
+public class ExerciseController {
 
-    private exerciseService exerciseService;
+    private ExerciseService exerciseService;
 
-    public exerciseController(exerciseService theExerciseService) {
+    public ExerciseController(ExerciseService theExerciseService) {
         exerciseService = theExerciseService;
     }
 
     @GetMapping("/exercises/{exerciseId}")
-    public exerciseDTO getExercise(@PathVariable("exerciseId") Integer exerciseId) {
+    public ExerciseDTO getExercise(@PathVariable("exerciseId") Integer exerciseId) {
         return exerciseService.findById(exerciseId);
     }
 
     @PostMapping("/exercises")
-    public void addExercise(@RequestBody exerciseEntity theExerciseEntity) {
+    public void addExercise(@RequestBody ExerciseEntity theExerciseEntity) {
         exerciseService.saveNewExercise(theExerciseEntity);
     }
 
     @GetMapping("/exercises")
-    public List<exerciseDTO> findAll() {
+    public List<ExerciseDTO> findAll() {
         return exerciseService.findAll();
     }
 
@@ -49,7 +49,7 @@ public class exerciseController {
     //Put endpoint not in use
     @PutMapping("/exercises/{exerciseId}")
     public void updateExercise(@PathVariable("exerciseId") Integer exerciseId,
-                               @RequestBody exerciseEntity theExerciseEntity) {
+                               @RequestBody ExerciseEntity theExerciseEntity) {
 
         exerciseService.saveNewExercise(theExerciseEntity);
     }

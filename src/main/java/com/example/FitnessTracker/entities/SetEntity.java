@@ -1,6 +1,6 @@
-package com.example.FitnessTracker.Entities;
+package com.example.FitnessTracker.entities;
 
-public class setEntity {
+public class SetEntity {
 
     private int setId;
     private String exerciseId;
@@ -10,5 +10,5 @@ public class setEntity {
 
     private String note;
 
-    exerciseEntity exerciseEntity;
+    ExerciseEntity exerciseEntity;
 }
